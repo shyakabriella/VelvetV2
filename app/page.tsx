@@ -1,69 +1,83 @@
-import Image from "next/image";
+import Header from "@/components/Header";
+import SearchPanel from "@/components/SearchPanel";
+import VelvetExperience from "@/components/VelvetExperience";
+import HotelCard, { type Hotel } from "@/components/HotelCard";
+import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
+
+const hotels: Hotel[] = [
+  {
+    name: "Velvet Suites Remera",
+    location: "10 KG 111 Street, Remera, Kigali",
+    description:
+      "Experience elegant accommodation, comfort and warm hospitality at Velvet Suites Remera. A welcoming place to stay whether you are visiting Kigali for business, leisure or relaxation.",
+    images: ["/ve1.avif", "/velv.jpeg"],
+    startIndex: 0,
+  },
+  {
+    name: "Velvet Suites Kimironko",
+    location: "Kimironko, Kigali",
+    description:
+      "Enjoy the Velvet Suites experience in Kimironko, with comfortable accommodation and attentive hospitality in one of Kigali's vibrant neighborhoods.",
+    images: ["/velv.jpeg", "/ve1.avif"],
+    startIndex: 0,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <Header />
+
+      <main className="overflow-hidden">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal direction="fade">
+            <SearchPanel />
+          </Reveal>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        <Reveal direction="up">
+          <VelvetExperience />
+        </Reveal>
+
+        <section
+          id="rooms"
+          className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20"
+        >
+          <Reveal direction="up">
+            <div className="mb-10">
+              <p className="text-[12px] font-bold uppercase tracking-[0.28em] text-[#7a0000]">
+                Stay With Us
+              </p>
+
+              <h2 className="mt-3 font-serif text-[36px] text-[#171717] sm:text-[44px]">
+                Choose Your Velvet Suites Location
+              </h2>
+
+              <p className="mt-3 max-w-2xl text-[16px] leading-7 text-gray-600">
+                Discover Velvet Suites in Remera and Kimironko, Kigali, and
+                choose the location that is most convenient for your stay.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="space-y-7">
+            {hotels.map((hotel, index) => (
+              <Reveal
+                key={hotel.name}
+                direction={index % 2 === 0 ? "right" : "left"}
+                delay={index * 120}
+              >
+                <HotelCard hotel={hotel} />
+              </Reveal>
+            ))}
+          </div>
+        </section>
       </main>
-    </div>
+
+      <Reveal direction="up">
+        <Footer />
+      </Reveal>
+    </>
   );
 }
