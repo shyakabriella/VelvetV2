@@ -73,16 +73,16 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Velvet Suites logo - same right position */}
+        {/* Velvet Suites logo */}
         <Link
           href="/"
           aria-label="Velvet Suites"
-          className="-mt-1 flex h-[calc(3.5rem+4px)] w-[120px] items-center justify-center bg-[#4a0000] px-2"
+          className="-mt-1 flex h-[calc(3.5rem+4px)] w-[150px] items-center justify-center bg-white px-2"
         >
           <img
-            src="/vel.png"
+            src="/VELVET SUITES-01.png"
             alt="Velvet Suites"
-            className="max-h-[54px] w-auto object-contain"
+            className="max-h-[60px] w-auto max-w-[145px] object-contain"
           />
         </Link>
       </div>
